@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -11,23 +11,37 @@ const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   background: cadetblue;
+  background-image: linear-gradient(to right, #7bc7d4, #3e7f81);
+  border-bottom: 3px solid #3e7f81;
 `;
 
 const Menu = styled.nav`
-  display: flex;
-  position: relative;
-  width: initial;
-  border-bottom: none;
-  margin: auto 0 auto auto;
+  display: ${(props: { open: boolean }) => (props.open ? 'block' : 'none')};
   font-family: 'Open Sans';
-  background: none;
-  left: initial;
-  top: initial;
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  left: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  background: white;
+  border-bottom: 3px solid #3e7f81;
+
+  @media (min-width: 768px) {
+    display: flex;
+    left: initial;
+    position: relative;
+    top: initial;
+    width: initial;
+    border-bottom: none;
+    margin: auto 0 auto auto;
+    background: none;
+  }
 `;
 
 // Inherit from NavLink
 const StyledLink = styled(NavLink)`
-  color: whitesmoke;
+  color: black;
   padding: 4px 8px;
   display: block;
   text-align: center;
@@ -37,18 +51,54 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     font-weight: bold;
-    color: rebeccapurple;
+  }
+
+  &:visited {
+    color: black;
   }
 
   &:focus {
     color: goldenrod;
   }
+
+  @media (min-width: 768px) {
+    color: whitesmoke;
+
+    &:visited {
+      color: whitesmoke;
+    }
+  }
+`;
+
+const MobileMenuIcon = styled.div`
+  margin: auto 0 auto auto;
+  width: 25px;
+  min-width: 25px;
+  padding: 5px;
+
+  > div {
+    height: 3px;
+    background-color: black;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
   return (
     <HeaderWrapper>
-      <Menu>
+      <MobileMenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <div />
+        <div />
+        <div />
+      </MobileMenuIcon>
+      <Menu open={isMenuOpen}>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
       </Menu>
