@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-interface IProps {}
+import { NavLink } from 'react-router-dom';
 
 const HeaderWrapper = styled.header`
   height: 60px;
@@ -15,11 +13,45 @@ const HeaderWrapper = styled.header`
   background: cadetblue;
 `;
 
-const Header = ({}: IProps) => {
+const Menu = styled.nav`
+  display: flex;
+  position: relative;
+  width: initial;
+  border-bottom: none;
+  margin: auto 0 auto auto;
+  font-family: 'Open Sans';
+  background: none;
+  left: initial;
+  top: initial;
+`;
+
+// Inherit from NavLink
+const StyledLink = styled(NavLink)`
+  color: whitesmoke;
+  padding: 4px 8px;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  margin: auto 0;
+  text-decoration: none;
+
+  &.active {
+    font-weight: bold;
+    color: rebeccapurple;
+  }
+
+  &:focus {
+    color: goldenrod;
+  }
+`;
+
+const Header = () => {
   return (
     <HeaderWrapper>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
+      <Menu>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/login">Login</StyledLink>
+      </Menu>
     </HeaderWrapper>
   );
 };
