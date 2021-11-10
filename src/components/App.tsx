@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { Button } from 'components/common';
+import Home from 'components/pages/Home';
+import Login from 'components/pages/Login';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -21,11 +23,12 @@ function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <h1>App</h1>
-      <Button>Primary Button</Button>
-      <Button large>Large Button</Button>
-      <Button secondary>Secondary Button</Button>
-      <Button disabled>Disabled Button</Button>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </Fragment>
   );
 }
