@@ -5,7 +5,13 @@ import React, {
   ChangeEvent,
   MouseEvent,
 } from 'react';
-import { PageLayout, Input, PasswordInput, Button } from 'components/common';
+import {
+  PageLayout,
+  Input,
+  PasswordInput,
+  Button,
+  Spinner,
+} from 'components/common';
 import styled from 'styled-components';
 
 type ClickEvent = MouseEvent<HTMLButtonElement, globalThis.MouseEvent>;
@@ -78,17 +84,23 @@ const Login = () => {
     <PageLayout>
       <h1>Login</h1>
       <Form>
-        <Input
-          name="username"
-          placeholder="username"
-          value={username}
-          type="text"
-          onChange={(event) => usernameHandler(event)}
-        />
-        <PasswordInput
-          value={password}
-          onChange={(event) => passwordHandler(event)}
-        />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            <Input
+              name="username"
+              placeholder="username"
+              value={username}
+              type="text"
+              onChange={(event) => usernameHandler(event)}
+            />
+            <PasswordInput
+              value={password}
+              onChange={(event) => passwordHandler(event)}
+            />
+          </Fragment>
+        )}
         {isLoading ? (
           <Button large disabled>
             Loading...
