@@ -1,8 +1,12 @@
 import styled from 'styled-components';
+interface IProps {
+  disabled?: boolean;
+  secondary?: boolean;
+}
 
 const Button = styled.button`
   color: white;
-  background: #f8049c;
+  background: ${({ secondary }: IProps) => (secondary ? 'black' : '#f8049c')};
   font-weight: bold;
   padding: 8px;
   border-radius: 4px;
