@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     color: black;
     font-family: 'Mochiy Pop One', sans-serif;
+
+    * {
+      margin: 0.1em;
+    }
   }
 `;
 
@@ -19,6 +23,7 @@ function App() {
       <GlobalStyle />
       <h1>App</h1>
       <Button>Primary Button</Button>
+      <Button large>Large Button</Button>
       <Button secondary>Secondary Button</Button>
       <Button disabled>Disabled Button</Button>
     </Fragment>
