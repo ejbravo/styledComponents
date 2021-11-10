@@ -1,6 +1,14 @@
-import React, { useState, ChangeEvent } from 'react';
-import { PageLayout, Input } from 'components/common';
+import React, {
+  useState,
+  useEffect,
+  Fragment,
+  ChangeEvent,
+  MouseEvent,
+} from 'react';
+import { PageLayout, Input, PasswordInput, Button } from 'components/common';
 import styled from 'styled-components';
+
+type ClickEvent = MouseEvent<HTMLButtonElement, globalThis.MouseEvent>;
 
 const Form = styled.form`
   width: 100%;
@@ -11,13 +19,23 @@ const Form = styled.form`
   box-sizing: border-box;
   color: black;
   border-radius: 4px;
+
+  .alt-text {
+    text-align: center;
+    margin: 10px 0;
+  }
 `;
 
-interface IProps {}
-
-const Login = ({}: IProps) => {
+const Login = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  let timeout: NodeJS.Timeout;
+
+  useEffect(() => {
+    return () => timeout && clearTimeout(timeout);
+  }, []);
 
   const usernameHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -25,11 +43,35 @@ const Login = ({}: IProps) => {
     } = event;
     setUsername(value);
   };
+
   const passwordHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = event;
     setPassword(value);
+  };
+
+  const submitHandler = (action: string) => {
+    console.log(action);
+    setIsLoading(true);
+    timeout = setTimeout(
+      () => {
+        setIsLoading(false);
+        setUsername('');
+        setPassword('');
+      },
+      action === 'login' ? 2000 : 3000
+    );
+  };
+
+  const loginHandler = (event: ClickEvent) => {
+    event.preventDefault();
+    submitHandler('login');
+  };
+
+  const registerHandler = (event: ClickEvent) => {
+    event.preventDefault();
+    submitHandler('register');
   };
 
   return (
@@ -43,13 +85,35 @@ const Login = ({}: IProps) => {
           type="text"
           onChange={(event) => usernameHandler(event)}
         />
-        <Input
-          name="password"
-          placeholder="password"
+        <PasswordInput
           value={password}
-          type="password"
           onChange={(event) => passwordHandler(event)}
         />
+        {isLoading ? (
+          <Button large disabled>
+            Loading...
+          </Button>
+        ) : (
+          <Fragment>
+            <Button
+              large
+              type="submit"
+              name="login"
+              onClick={(event) => loginHandler(event)}
+            >
+              Login
+            </Button>
+            <div className="alt-text">or</div>
+            <Button
+              secondary
+              type="submit"
+              name="register"
+              onClick={(event) => registerHandler(event)}
+            >
+              Register
+            </Button>
+          </Fragment>
+        )}
       </Form>
     </PageLayout>
   );

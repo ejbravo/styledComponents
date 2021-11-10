@@ -11,7 +11,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   background: cadetblue;
-  background-image: linear-gradient(to right, #7bc7d4, #3e7f81);
+  background-image: linear-gradient(to right, #81c3d3, #326f7a);
   border-bottom: 3px solid #3e7f81;
 `;
 

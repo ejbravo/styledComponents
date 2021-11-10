@@ -12,10 +12,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     color: black;
     font-family: 'Mochiy Pop One', sans-serif;
-
-    * {
-      margin: 0.1em;
-    }
   }
 `;
 
