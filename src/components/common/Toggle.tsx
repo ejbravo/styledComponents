@@ -1,7 +1,11 @@
 import react from 'react';
 import styled from 'styled-components';
 
-interface IProps {
+interface IProps extends NotchProps {
+  onToggle: () => void;
+}
+
+interface NotchProps {
   isActive: boolean;
 }
 
@@ -20,7 +24,7 @@ const ToggleWrapper = styled.div`
   );
 `;
 
-const Notch = styled.div<IProps>`
+const Notch = styled.div<NotchProps>`
   height: 21px;
   width: 21px;
   border: 1px solid #666;
@@ -31,9 +35,9 @@ const Notch = styled.div<IProps>`
   transform: translate(${(props) => (props.isActive ? '26px' : '1px')});
 `;
 
-const Toggle = ({ isActive }: IProps) => {
+const Toggle = ({ isActive, onToggle }: IProps) => {
   return (
-    <ToggleWrapper>
+    <ToggleWrapper onClick={onToggle}>
       <Notch isActive={isActive} />
     </ToggleWrapper>
   );
