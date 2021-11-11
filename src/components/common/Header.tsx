@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { Toggle } from '.';
 
 const HeaderWrapper = styled.header`
   height: 60px;
@@ -104,6 +105,7 @@ const Header = () => {
       <Menu open={isMenuOpen}>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink to="/login">Login</StyledLink>
+        <Toggle isActive />
       </Menu>
     </HeaderWrapper>
   );
