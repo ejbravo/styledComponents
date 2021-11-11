@@ -30,6 +30,14 @@ const Form = styled.form`
     text-align: center;
     margin: 10px 0;
   }
+
+  > ${Button}:first-of-type {
+    margin-top: 40px;
+  }
+
+  > ${Input} {
+    margin-top: 20px;
+  }
 `;
 
 const Login = () => {
@@ -88,6 +96,7 @@ const Login = () => {
           <Spinner />
         ) : (
           <Fragment>
+            <span>Login if you have an account</span>
             <Input
               name="username"
               placeholder="username"
