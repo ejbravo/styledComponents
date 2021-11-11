@@ -45,7 +45,7 @@ const Menu = styled.nav`
 
 // Inherit from NavLink
 const StyledLink = styled(NavLink)`
-  color: ${(props) => props.theme.bodyFontColor}
+  color: ${(props) => props.theme.bodyFontColor};
   padding: 4px 8px;
   display: block;
   text-align: center;
