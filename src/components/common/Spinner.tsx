@@ -12,7 +12,7 @@ to {
 const Spinner = styled.div`
   height: 30px;
   width: 30px;
-  border: 2px solid #326f7a;
+  border: 2px solid ${(props) => props.theme.secondaryColor};
   border-radius: 50%;
   border-top: none;
   border-right: none;

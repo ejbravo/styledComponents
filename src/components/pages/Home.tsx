@@ -1,9 +1,7 @@
 import React from 'react';
 import { PageLayout } from 'components/common';
 
-interface IProps {}
-
-const Home = ({}: IProps) => {
+const Home = () => {
   return (
     <PageLayout>
       <h1>Home</h1>

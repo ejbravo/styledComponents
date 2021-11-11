@@ -1,17 +1,23 @@
 import styled, { css } from 'styled-components';
+
 interface IProps {
   disabled?: boolean;
   secondary?: boolean;
   large?: boolean;
 }
 
-const Button = styled.button`
-  color: ${({ secondary }: IProps) => (secondary ? '#326f7a' : 'whitesmoke')};
-  background: ${({ secondary }: IProps) => (secondary ? '#81c3d3' : '#326f7a')};
+//const button: StyledFunction<IProps & HTMLProps<HTMLButtonElement>> =
+//  styled.button;
+
+const Button = styled.button<IProps>`
+  color: ${(props) =>
+    props.secondary ? props.theme.secondaryColor : 'whitesmoke'};
+  background: ${(props) =>
+    props.secondary ? props.theme.primaryColor : props.theme.secondaryColor};
   font-weight: 600;
   letter-spacing: 0.05em;
 
-  ${(props: IProps) =>
+  ${(props) =>
     props.large
       ? css`
           padding: 16px;

@@ -1,9 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from 'components/pages/Home';
 import Login from 'components/pages/Login';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
+const theme = {
+  primaryColor: '#81c3d3',
+  secondaryColor: '#326f7a',
+  warningColor: 'goldenrod',
+};
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -17,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <Fragment>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
         <Routes>
@@ -25,7 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
-    </Fragment>
+    </ThemeProvider>
   );
 }
 

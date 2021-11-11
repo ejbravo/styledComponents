@@ -10,9 +10,12 @@ const HeaderWrapper = styled.header`
   padding: 0 16px;
   position: fixed;
   top: 0;
-  background: cadetblue;
-  background-image: linear-gradient(to right, #81c3d3, #326f7a);
-  border-bottom: 3px solid #3e7f81;
+  background-image: linear-gradient(
+    to right,
+    ${(props) => props.theme.primaryColor},
+    ${(props) => props.theme.secondaryColor}
+  );
+  border-bottom: 3px solid ${(props) => props.theme.secondaryColor};
 `;
 
 const Menu = styled.nav`
@@ -25,7 +28,7 @@ const Menu = styled.nav`
   padding: 8px;
   box-sizing: border-box;
   background: white;
-  border-bottom: 3px solid #3e7f81;
+  border-bottom: 3px solid ${(props) => props.theme.secondaryColor};
 
   @media (min-width: 768px) {
     display: flex;
@@ -58,7 +61,7 @@ const StyledLink = styled(NavLink)`
   }
 
   &:focus {
-    color: goldenrod;
+    color: ${(props) => props.theme.warningColor};
   }
 
   @media (min-width: 768px) {
