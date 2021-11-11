@@ -23,6 +23,7 @@ const largeStyles = (large: boolean = false) => {
 };
 
 const Button = styled.button<IProps>`
+  cursor: pointer;
   color: ${(props) =>
     props.secondary ? props.theme.secondaryColor : 'whitesmoke'};
   background: ${(props) =>

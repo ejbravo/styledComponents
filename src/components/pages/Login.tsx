@@ -49,6 +49,7 @@ const Login = () => {
 
   useEffect(() => {
     return () => timeout && clearTimeout(timeout);
+    // eslint-disable-next-line
   }, []);
 
   const usernameHandler = (event: ChangeEvent<HTMLInputElement>) => {
