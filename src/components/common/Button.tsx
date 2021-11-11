@@ -6,8 +6,21 @@ interface IProps {
   large?: boolean;
 }
 
-//const button: StyledFunction<IProps & HTMLProps<HTMLButtonElement>> =
-//  styled.button;
+const largeStyles = (large: boolean = false) => {
+  if (large) {
+    return css`
+      padding: 16px;
+      border-radius: 5px;
+      font-size: 1.5em;
+    `;
+  } else {
+    return css`
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 1em;
+    `;
+  }
+};
 
 const Button = styled.button<IProps>`
   color: ${(props) =>
@@ -16,20 +29,7 @@ const Button = styled.button<IProps>`
     props.secondary ? props.theme.primaryColor : props.theme.secondaryColor};
   font-weight: 600;
   letter-spacing: 0.05em;
-
-  ${(props) =>
-    props.large
-      ? css`
-          padding: 16px;
-          border-radius: 5px;
-          font-size: 1.5em;
-        `
-      : css`
-          padding: 8px;
-          border-radius: 4px;
-          font-size: 1em;
-        `}
-
+  ${(props) => largeStyles(props.large)};
   box-shadow: none;
   border: none;
   width: 100%;
